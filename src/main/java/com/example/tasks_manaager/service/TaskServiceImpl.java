@@ -3,6 +3,8 @@ package com.example.tasks_manaager.service;
 import com.example.tasks_manaager.models.Task.Task;
 import com.example.tasks_manaager.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,16 +17,24 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task getTaskById(Long taskId) {
+
         return taskRepository.getReferenceById(taskId);
     }
 
     @Override
     public List<Task> findAllTasks() {
+
         return taskRepository.findAll();
     }
 
     @Override
+    public Page<Task> findActiveTasks(Pageable pageable) {
+        return taskRepository.findByActiveTrue(pageable);
+    }
+
+    @Override
     public void saveTask(Task task) {
+
         taskRepository.save(task);
     }
 }
