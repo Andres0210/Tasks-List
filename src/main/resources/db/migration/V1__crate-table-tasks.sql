@@ -1,0 +1,9 @@
+CREATE TABLE tasks
+(
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    description VARCHAR(500) NOT NULL,
+    state VARCHAR(20) NOT NULL,
+    priority VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
