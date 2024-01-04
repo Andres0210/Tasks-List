@@ -19,6 +19,7 @@ public class Task {
     private Long id;
     private String name;
     private String description;
+    private Boolean active;
     @Enumerated(EnumType.STRING)
     private State state;
     @Enumerated(EnumType.STRING)
@@ -26,6 +27,7 @@ public class Task {
 
     //Constructors
     public Task(RegisterTaskDTO registerTaskDTO){
+        this.active = true;
         this.name = registerTaskDTO.name();
         this.description = registerTaskDTO.description();
         this.state = registerTaskDTO.state();
@@ -33,6 +35,28 @@ public class Task {
     }
 
     //Methods
+
+    // Actualizar los datos de una tarea
+
+    public void updateDataTask(UpdateTaskDTO updateTaskDTO){
+        if(updateTaskDTO.name() != null){
+            this.name = updateTaskDTO.name();
+        }
+        if(updateTaskDTO.description() != null){
+            this.description = updateTaskDTO.description();
+        }
+        if(updateTaskDTO.state() != null){
+            this.state = updateTaskDTO.state();
+        }
+        if(updateTaskDTO.priority() != null){
+            this.priority= updateTaskDTO.priority();
+        }
+    }
+
+    //Cambia el estado de la tarea a desactivado para que no se muestre en la lista
+    public void disableTask(){
+        this.active = false;
+    }
 
 
 }
